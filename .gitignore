@@ -35,6 +35,7 @@ app/crud/uploads/*
 !app/crud/uploads/14-myjonica-jean-rabino.jpg
 !app/crud/uploads/15-victoria-ramboyon.jpg
 !app/crud/uploads/no-avatar.jpg
+!app/crud/uploads/cmon.gif
 !app/crud/dist
 /cypress/videos/
 /cypress/screenshots/
