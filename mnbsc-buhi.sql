@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 09, 2024 at 06:09 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: Aug 10, 2024 at 05:23 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -46,7 +46,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `number`, `name`, `avatar`, `username`, `password`, `active_portion`, `called_at`, `pinged_at`, `created_at`, `updated_at`) VALUES
-(1, 1, 'DEVELOPMENT', 'no-avatar.jpg', 'admin', 'admin', NULL, NULL, NULL, '2023-02-19 07:36:32', '2023-05-28 03:58:25');
+(1, 1, 'DEVELOPMENT', 'no-avatar.jpg', 'admin', 'admin', NULL, NULL, '2024-08-10 02:38:46', '2023-02-19 07:36:32', '2024-08-10 02:38:46');
 
 -- --------------------------------------------------------
 
@@ -68,20 +68,21 @@ CREATE TABLE `arrangements` (
 --
 
 INSERT INTO `arrangements` (`id`, `event_id`, `team_id`, `order`, `created_at`, `updated_at`) VALUES
-(1, 6, 10, 7, '2024-08-09 12:53:41', '2024-08-09 13:19:39'),
-(2, 6, 1, 5, '2024-08-09 12:53:45', '2024-08-09 13:43:18'),
-(3, 6, 8, 6, '2024-08-09 12:53:49', '2024-08-09 13:43:31'),
-(4, 6, 3, 1, '2024-08-09 12:53:57', '2024-08-09 13:42:55'),
+(1, 6, 10, 10, '2024-08-09 12:53:41', '2024-08-10 03:11:08'),
+(2, 6, 1, 1, '2024-08-09 12:53:45', '2024-08-10 03:10:39'),
+(3, 6, 8, 9, '2024-08-09 12:53:49', '2024-08-10 03:11:01'),
+(4, 6, 3, 3, '2024-08-09 12:53:57', '2024-08-10 03:10:43'),
 (5, 6, 12, 6, '2024-08-09 12:54:01', '2024-08-09 12:54:01'),
-(6, 6, 9, 3, '2024-08-09 12:54:06', '2024-08-09 13:43:02'),
+(6, 6, 9, 9, '2024-08-09 12:54:06', '2024-08-10 03:11:04'),
 (7, 6, 11, 10, '2024-08-09 12:54:12', '2024-08-09 13:19:58'),
-(8, 6, 2, 4, '2024-08-09 12:54:21', '2024-08-09 13:19:20'),
+(8, 6, 2, 2, '2024-08-09 12:54:21', '2024-08-10 03:10:41'),
 (9, 6, 14, 8, '2024-08-09 12:54:35', '2024-08-09 13:19:45'),
-(10, 6, 7, 10, '2024-08-09 13:19:13', '2024-08-09 13:44:02'),
-(11, 6, 5, 7, '2024-08-09 13:19:25', '2024-08-09 13:43:40'),
+(10, 6, 7, 7, '2024-08-09 13:19:13', '2024-08-10 03:10:54'),
+(11, 6, 5, 5, '2024-08-09 13:19:25', '2024-08-10 03:10:48'),
 (12, 6, 13, 2, '2024-08-09 13:42:58', '2024-08-09 13:42:58'),
 (13, 6, 4, 4, '2024-08-09 13:43:11', '2024-08-09 13:43:11'),
-(14, 6, 15, 9, '2024-08-09 13:43:55', '2024-08-09 13:43:55');
+(14, 6, 15, 9, '2024-08-09 13:43:55', '2024-08-09 13:43:55'),
+(15, 6, 6, 6, '2024-08-10 03:10:51', '2024-08-10 03:10:51');
 
 -- --------------------------------------------------------
 
@@ -272,13 +273,13 @@ CREATE TABLE `judges` (
 --
 
 INSERT INTO `judges` (`id`, `number`, `name`, `avatar`, `username`, `password`, `active_portion`, `called_at`, `pinged_at`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Dr. Emmalyn P. Sirios', 'no-avatar.jpg', 'judge01', 'judge01', NULL, NULL, '2024-08-09 15:06:37', '2024-08-09 13:04:42', '2024-08-09 15:06:50'),
-(2, 2, 'Jhunna Talangan', 'no-avatar.jpg', 'judge02', 'judge02', NULL, NULL, NULL, '2024-08-09 14:08:25', '2024-08-09 15:39:39'),
-(3, 3, 'Jeanette Mesalucha', 'no-avatar.jpg', 'judge03', 'judge03', NULL, NULL, NULL, '2024-08-09 14:09:55', '2024-08-09 14:09:55'),
-(4, 4, 'Arch. Marineth Haber', 'no-avatar.jpg', 'judge04', 'judge04', NULL, NULL, NULL, '2024-08-09 14:10:33', '2024-08-09 14:10:33'),
-(5, 5, 'Neoli Ibarrientos', 'no-avatar.jpg', 'judge05', 'judge05', NULL, NULL, NULL, '2024-08-09 14:12:03', '2024-08-09 14:12:03'),
-(6, 6, 'Cyril Capistrano', 'no-avatar.jpg', 'judge06', 'judge06', NULL, NULL, NULL, '2024-08-09 14:13:04', '2024-08-09 14:13:04'),
-(7, 7, 'Margarita Aguinillo', 'no-avatar.jpg', 'judge07', 'judge07', NULL, NULL, NULL, '2024-08-09 14:13:37', '2024-08-09 14:13:37');
+(1, 1, 'Judge 01', 'no-avatar.jpg', 'judge01', 'judge01', NULL, NULL, '2024-08-09 15:06:37', '2024-08-09 13:04:42', '2024-08-10 03:21:25'),
+(2, 2, 'Judge 02', 'no-avatar.jpg', 'judge02', 'judge02', NULL, NULL, NULL, '2024-08-09 14:08:25', '2024-08-10 03:21:34'),
+(3, 3, 'Judge 03', 'no-avatar.jpg', 'judge03', 'judge03', NULL, NULL, NULL, '2024-08-09 14:09:55', '2024-08-10 03:21:45'),
+(4, 4, 'Judge 04', 'no-avatar.jpg', 'judge04', 'judge04', NULL, NULL, NULL, '2024-08-09 14:10:33', '2024-08-10 03:21:54'),
+(5, 5, 'Judge 05', 'no-avatar.jpg', 'judge05', 'judge05', NULL, NULL, NULL, '2024-08-09 14:12:03', '2024-08-10 03:22:03'),
+(6, 6, 'Judge 06', 'no-avatar.jpg', 'judge06', 'judge06', NULL, NULL, NULL, '2024-08-09 14:13:04', '2024-08-10 03:22:11'),
+(7, 7, 'Judge 07', 'no-avatar.jpg', 'judge07', 'judge07', NULL, NULL, NULL, '2024-08-09 14:13:37', '2024-08-10 03:22:20');
 
 -- --------------------------------------------------------
 
@@ -2470,7 +2471,7 @@ INSERT INTO `teams` (`id`, `number`, `name`, `location`, `avatar`, `created_at`,
 (3, 3, 'Jamila Gonzales', 'Buhi, Camarines Sur', '07-jamila-gonzales.jpg', '2024-08-07 16:06:54', '2024-08-09 14:29:15'),
 (4, 4, 'Angel Marie Melicor', 'Camalig Albay', '01-angel-marie-melicor.jpg', '2024-08-07 16:03:48', '2024-08-09 14:29:18'),
 (5, 5, 'Mien Mie Egipto', 'Iriga City', '13-mien-mie-egipto.jpg', '2024-08-07 16:09:24', '2024-08-09 14:29:22'),
-(6, 6, 'Daniela Joy Esquivel', 'Sta. Clara Buhi, Camarines Sur', '04-daniela-joy-esquivel.jpg', '2024-08-07 16:05:19', '2024-08-09 14:29:25'),
+(6, 6, 'Daniela Joy Esquivel', 'Sta. Clara, Buhi, Camarines Sur', '04-daniela-joy-esquivel.jpg', '2024-08-07 16:05:19', '2024-08-10 03:15:35'),
 (7, 7, 'Benix Carol Saba', 'Iriga City', '02-benix-carol-saba.jpg', '2024-08-07 16:04:19', '2024-08-09 14:29:29'),
 (8, 8, 'Janna Eloisa Galan Lanuzga', 'Nabua, Camarines Sur', '08-janna-elosa-galan-lanuzga.jpg', '2024-08-07 16:07:19', '2024-08-09 14:27:44'),
 (9, 9, 'Victoria Ramboyon', 'Pili, Camarines Sur', '15-victoria-ramboyon.jpg', '2024-08-07 16:10:25', '2024-08-09 14:29:38'),
@@ -2478,8 +2479,8 @@ INSERT INTO `teams` (`id`, `number`, `name`, `location`, `avatar`, `created_at`,
 (11, 11, 'Kaelah Joy Opeña', 'Guinobatan Albay', '09-kaelah-joy-opeña.jpg', '2024-08-07 16:07:53', '2024-08-09 14:29:47'),
 (12, 12, 'Hannah Paula Quebral', 'Buhi, Camarines Sur', '06-hannah-paula-quebral.jpg', '2024-08-07 16:06:26', '2024-08-09 14:29:50'),
 (13, 13, 'Hannah Grace Clavillas', 'Buhi, Camarines Sur', '05-hannah-grace-clavillas.jpg', '2024-08-07 16:06:01', '2024-08-09 14:29:53'),
-(14, 14, 'Blessie Kateri Sofia Canales', 'Sta. Clara Buhi, Camarines Sur', '03-blessie-kateri-sofia-canales.jpg', '2024-08-07 16:04:51', '2024-08-09 14:29:56'),
-(15, 15, 'Ma. Amethyst Mauring', 'Sta. Clara Buhi, Camarines Sur', '12-ma.-amethyst-mauring.jpg', '2024-08-07 16:09:02', '2024-08-09 14:30:01');
+(14, 14, 'Blessie Kateri Sofia Canales', 'Sta. Clara, Buhi, Camarines Sur', '03-blessie-kateri-sofia-canales.jpg', '2024-08-07 16:04:51', '2024-08-10 03:13:29'),
+(15, 15, 'Ma. Amethyst Mauring', 'Sta. Clara, Buhi, Camarines Sur', '12-ma.-amethyst-mauring.jpg', '2024-08-07 16:09:02', '2024-08-10 03:13:41');
 
 -- --------------------------------------------------------
 
@@ -2816,7 +2817,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `arrangements`
 --
 ALTER TABLE `arrangements`
-  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `categories`
