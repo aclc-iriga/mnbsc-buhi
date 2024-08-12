@@ -140,6 +140,8 @@ class Admin extends User
         $unique_total_fractional_ranks = [];
         $unique_final_adjustments = [];
 
+        $total_local_teams = 0; // count local teams
+
         foreach($teams as $team) {
             $key_team = 'team_' . $team->getId();
 
@@ -259,6 +261,8 @@ class Admin extends User
             // push to $unique_total_fractional_ranks
             if(!in_array($rank_total['fractional'], $unique_total_fractional_ranks))
                 $unique_total_fractional_ranks[] = $rank_total['fractional'];
+
+            if($team->isLocal()) $total_local_teams += 1; // count local teams
         }
 
         // sort $unique_total_fractional_ranks
@@ -358,21 +362,106 @@ class Admin extends User
         sort($unique_final_fractional_ranks);
 
         // determine winners (case-to-case basis depending on organizer's guidelines)
-        $i = 0;
-        foreach($event->getAllTitles() as $key_title => $title) {
-            // update title of $unique_final_fractional_ranks[$i]'th team
-            foreach($result['teams'] as $key_team => $arr_team) {
-                if($arr_team['rank']['final']['fractional'] == $unique_final_fractional_ranks[$i]) {
-                    $t = trim($title->getTitle());
-                    $result['teams'][$key_team]['title'] = $t;
-                    if($t != '')
-                        $result['winners'][$key_team] = $t;
+        if($event->getSlug() === 'final-qa' && $total_local_teams > 0) {
+            $event_titles = $event->getAllTitles();
+
+            // Mutya nin Bagong Santa Clara
+            $ranks_processed = [];
+            $first_is_local  = false;
+            foreach($event_titles as $key_title => $title) {
+                if($title->getRank() == 1) {
+                    $ranks_processed[] = 1;
+                    $filled = false;
+                    for($j=0; $j<sizeof($unique_final_fractional_ranks); $j++) {
+                        foreach ($result['teams'] as $key_team => $arr_team) {
+                            if(!isset($result['winners'][$key_team])) {
+                                if($arr_team['rank']['final']['fractional'] == $unique_final_fractional_ranks[$j]) {
+                                    $is_local = (Team::findById($arr_team['id']))->isLocal();
+                                    $t = trim($title->getTitle());
+                                    $result['teams'][$key_team]['title'] = $t;
+                                    if($t != '')
+                                        $result['winners'][$key_team] = $t;
+                                    $filled = true;
+                                    if(!$first_is_local)
+                                        $first_is_local = $is_local;
+                                }
+                            }
+                        }
+                        if ($filled)
+                            break;
+                    }
+                    break;
                 }
             }
 
-            $i += 1;
-            if($i >= sizeof($unique_final_fractional_ranks))
-                break;
+            // Mutya nin Bagong Santa Clara Turismo
+            if(!($total_local_teams == 1 && $first_is_local)) {
+                foreach($event_titles as $key_title => $title) {
+                    if($title->getRank() == 2) {
+                        $ranks_processed[] = 2;
+                        $filled = false;
+                        for($j=0; $j<sizeof($unique_final_fractional_ranks); $j++) {
+                            foreach ($result['teams'] as $key_team => $arr_team) {
+                                if(!isset($result['winners'][$key_team])) {
+                                    if($arr_team['rank']['final']['fractional'] == $unique_final_fractional_ranks[$j]) {
+                                        $is_local = (Team::findById($arr_team['id']))->isLocal();
+                                        if($is_local) {
+                                            $t = trim($title->getTitle());
+                                            $result['teams'][$key_team]['title'] = $t;
+                                            if($t != '')
+                                                $result['winners'][$key_team] = $t;
+                                            $filled = true;
+                                        }
+                                    }
+                                }
+                            }
+                            if ($filled)
+                                break;
+                        }
+                        break;
+                    }
+                }
+            }
+
+            // Others
+            foreach($event_titles as $key_title => $title) {
+                if(!in_array($title->getRank(), $ranks_processed)) {
+                    $filled = false;
+                    for($j=0; $j<sizeof($unique_final_fractional_ranks); $j++) {
+                        foreach ($result['teams'] as $key_team => $arr_team) {
+                            if (!isset($result['winners'][$key_team])) {
+                                if ($arr_team['rank']['final']['fractional'] == $unique_final_fractional_ranks[$j]) {
+                                    $t = trim($title->getTitle());
+                                    $result['teams'][$key_team]['title'] = $t;
+                                    if($t != '')
+                                        $result['winners'][$key_team] = $t;
+                                    $filled = true;
+                                }
+                            }
+                        }
+                        if ($filled)
+                            break;
+                    }
+                }
+            }
+        }
+        else {
+            $i = 0;
+            foreach($event->getAllTitles() as $key_title => $title) {
+                // update title of $unique_final_fractional_ranks[$i]'th team
+                foreach($result['teams'] as $key_team => $arr_team) {
+                    if($arr_team['rank']['final']['fractional'] == $unique_final_fractional_ranks[$i]) {
+                        $t = trim($title->getTitle());
+                        $result['teams'][$key_team]['title'] = $t;
+                        if($t != '')
+                            $result['winners'][$key_team] = $t;
+                    }
+                }
+
+                $i += 1;
+                if($i >= sizeof($unique_final_fractional_ranks))
+                    break;
+            }
         }
 
         // return $result
